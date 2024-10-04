@@ -53,7 +53,11 @@ export class HomePageComponent implements OnInit {
           console.log('Selected departure city:', formValues.from); 
           console.log('Selected destination city:', formValues.to); 
           console.log('Selected date:', formValues.date); 
-    
+
+          const id = 101;
+         const variable= this.busService.getRoutesById(id);
+         console.log(variable);
+         
           // Set the selected route in the service
           this.seatService.selectRoute({
             from: formValues.from,

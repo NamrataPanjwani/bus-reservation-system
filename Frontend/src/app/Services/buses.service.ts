@@ -14,4 +14,10 @@ export class BusesService {
 
     return this.http.get<string[]>('http://localhost:8080/api/route/list');
   }
+
+  getRoutesById(id:number): Observable<string[]> {
+    console.log('Success!');
+
+    return this.http.get<string[]>(`http://localhost:8080/api/route/find/${id}`);
+  }
 }
