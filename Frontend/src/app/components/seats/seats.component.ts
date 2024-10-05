@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { SeatServiceService } from '../../app/services/seat-service.service';
+import { SeatServiceService } from '../../services/SeatService/seat-service.service';
 interface Seat {
   number: number;
   booked: boolean;
@@ -55,9 +55,9 @@ export class SeatsComponent implements OnInit {
 busService=inject(SeatServiceService)
 
   ngOnInit() {
-    this.busService.currentBus.subscribe(bus => {
-      this.selectedBus = bus;
-    });
+    // this.busService.currentBus.subscribe(bus => {
+    //   this.selectedBus = bus;
+    // });
   }
 }
 
