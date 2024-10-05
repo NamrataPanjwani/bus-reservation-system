@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("http://localhost:4200")
 @RestController
 @RequestMapping("/api/busSchedule")
 public class BusScheduleController {
@@ -22,6 +23,11 @@ public class BusScheduleController {
     @Autowired
     public BusScheduleController (BusScheduleService busScheduleService){
         this.busScheduleService=busScheduleService;
+    }
+
+    @GetMapping("/route/{routeId}")
+    public List<BusSchedule> getBusesByRoute(@PathVariable Long routeId) {
+        return busScheduleDao.findByRouteId(routeId);
     }
 
     @GetMapping("/list")

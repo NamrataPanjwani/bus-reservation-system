@@ -26,6 +26,13 @@ public class RouteController {
         this.routeService=routeService;
     }
 
+    @GetMapping("/search")
+    public List<Route> searchRoutes(
+        @RequestParam String source, 
+        @RequestParam String destination) {
+        return routeDao.findBySourceAndDestination(source, destination);
+    }
+
 
     @GetMapping("/list")
     public List<Route> findAll(){

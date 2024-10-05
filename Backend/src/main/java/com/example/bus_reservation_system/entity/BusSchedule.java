@@ -2,8 +2,8 @@ package com.example.bus_reservation_system.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.time.LocalDateTime;
+import java.sql.Time;
+import java.util.Set;
 
 @Entity
 @Data
@@ -13,21 +13,25 @@ public class BusSchedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false)
+    @ManyToOne
+    @JoinColumn(nullable = false, name = "bus_id")
     private Bus bus;
 
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false)
+    @ManyToOne
+    @JoinColumn(nullable = false,name = "route_id")
     private Route route;
 
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "bus_schedule_days", joinColumns = @JoinColumn(name = "bus_schedule_id"))
+    @Column(name = "day_of_week")
+    private Set<DayOfWeek> availableDays;
 
     @Column(nullable = false)
-    private LocalDateTime departureTime;
+    private Time departureTime;
 
     @Column(nullable = false)
-    private LocalDateTime arrivalTime;
+    private Time arrivalTime;
 
     @Column(nullable = false)
     private Integer availableSeats;
