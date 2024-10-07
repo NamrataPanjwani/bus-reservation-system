@@ -1,7 +1,13 @@
 package com.example.bus_reservation_system.entity;
 
+
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.List;
+
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Data
@@ -21,11 +27,8 @@ public class Bus {
     @Column(nullable = false)
     private Integer capacity;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private BusStatus status;
+    @Column(name = "bus_name")
+    private String busName;
 
-    @Column(nullable = false)
-    private String operator;
 
 }

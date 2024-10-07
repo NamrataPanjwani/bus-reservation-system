@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.time.LocalDate;
 
 import java.util.List;
 
@@ -29,6 +30,16 @@ public class BusScheduleController {
     public List<BusSchedule> getBusesByRoute(@PathVariable Long routeId) {
         return busScheduleDao.findByRouteId(routeId);
     }
+
+    // @GetMapping("/search")
+    // public List<BusSchedule> searchBuses(
+    //         @RequestParam String source,
+    //         @RequestParam String destination,
+    //         @RequestParam String date) {
+        
+    //     LocalDate searchDate = LocalDate.parse(date); // Convert string to LocalDate
+    //     return busScheduleService.findAvailableBuses(source, destination, searchDate);
+    // }
 
     @GetMapping("/list")
     public List<BusSchedule> findAll(){

@@ -39,8 +39,7 @@ public class BusService {
         bus.setBusNumber(bus.getBusNumber());
         bus.setBusType(bus.getBusType());
         bus.setCapacity(bus.getCapacity());
-        bus.setOperator(bus.getOperator());
-        bus.setStatus(bus.getStatus());
+        bus.setBusName(bus.getBusName());
 
         Bus updateBus = busDao.save(bus);
         return ResponseEntity.ok(updateBus);

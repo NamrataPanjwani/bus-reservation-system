@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import com.example.bus_reservation_system.services.BusService;
 import com.example.bus_reservation_system.entity.Bus;
+import com.example.bus_reservation_system.entity.BusSchedule;
+import java.time.LocalDate;
 
 
 @Slf4j
@@ -23,6 +25,10 @@ public class BusController {
     public  Optional<Bus> getBus(@PathVariable("id") long id){
         return busService.findBus(id);
     }
+
+
+     
+
 
     @GetMapping("/list")
     public List<Bus> getAllBuses(){

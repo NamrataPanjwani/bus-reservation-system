@@ -5,6 +5,8 @@ import lombok.Data;
 import java.sql.Time;
 import java.time.LocalDate;
 
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "Route")
@@ -20,7 +22,6 @@ public class Route {
     @Column(nullable = false)
     private String destination;
 
-    // @Column(nullable = false)
-    // private LocalDate date;
+   
 
 }

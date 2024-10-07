@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +20,11 @@ public class BusScheduleService {
     public BusScheduleService(BusScheduleDao busScheduleRepo) {
         this.busScheduleDao = busScheduleRepo;
     }
+
+    // public List<BusSchedule> findAvailableBuses(String source, String destination, LocalDate date) {
+    //     // Fetch schedules based on the source, destination, and date
+    //     return busScheduleDao.findBySourceDestinationAndDate(source, destination, date);
+    // }
 
     public List<BusSchedule> findAll() {
         return busScheduleDao.findAll();
@@ -56,6 +61,7 @@ public class BusScheduleService {
         busSchedule.setRoute(busSchedule.getRoute());
         busSchedule.setDepartureTime(busSchedule.getDepartureTime());
         busSchedule.setArrivalTime(busSchedule.getArrivalTime());
+        busSchedule.setAvailableDays(busSchedule.getAvailableDays());
 
         BusSchedule updateBusSchedule = busScheduleDao.save(busSchedule);
         return ResponseEntity.ok(updateBusSchedule);
