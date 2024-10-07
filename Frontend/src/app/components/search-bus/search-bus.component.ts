@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 })
 export class SearchBusComponent implements OnInit, OnDestroy {
   route = inject(Router);
-  buses: any[] = [];  // Changed to an empty array to load data dynamically
+  buses: any[] = [];  
   selectedRoute: any;
 
   constructor(private seatService: SeatServiceService) {}
@@ -22,15 +22,15 @@ export class SearchBusComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // Subscribe to the selected route and get the buses for that route
+   
     this.seatService.selectedRoute.subscribe(route => {
       this.selectedRoute = route;
       console.log('Selected route:', this.selectedRoute);
 
       if (this.selectedRoute) {
-        // Fetch buses for the selected route from the backend
-        this.seatService.getBusesForRoute(this.selectedRoute.id).subscribe(buses => {
-          this.buses = buses; // Assign buses received from the backend
+       
+        this.seatService.getBusesForRoute(this.selectedRoute.id, this.selectedRoute.date.toISOString().split('T')[0]).subscribe(buses => {
+          this.buses = buses; 
           console.log('Available buses:', this.buses);
         });
       }

@@ -15,13 +15,13 @@ export class SeatServiceService {
     this.selectedRouteSubject.next(route);
   }
 
-  // Method to fetch buses for a specific route from backend
-  getBusesForRoute(id:number): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/api/busSchedule/route/${id}`);
+ 
+  getBusesForRoute(id:number, date: Date): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/api/busSchedule/route/${id}/date/${date}`);
   }
 
   selectBus(bus: any) {
-    // Logic for selecting the bus
+    
   }
 }
 
