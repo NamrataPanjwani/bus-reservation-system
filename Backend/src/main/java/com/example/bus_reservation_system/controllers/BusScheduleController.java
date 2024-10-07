@@ -17,7 +17,7 @@ import java.util.List;
 public class BusScheduleController {
 
     @Autowired
-    private BusScheduleDao busScheduleDao;
+    // private BusScheduleDao busScheduleDao;
 
     private final BusScheduleService busScheduleService;
 
@@ -26,10 +26,17 @@ public class BusScheduleController {
         this.busScheduleService=busScheduleService;
     }
 
-    @GetMapping("/route/{routeId}")
-    public List<BusSchedule> getBusesByRoute(@PathVariable Long routeId) {
-        return busScheduleDao.findByRouteId(routeId);
+    @GetMapping("/route/{routeId}/date/{dateStr}")
+    public List<BusSchedule> getBusesByRoute(@PathVariable Long routeId, @PathVariable String dateStr) {
+        return busScheduleService.getBusesByRoute(routeId, dateStr);
     }
+
+    // @GetMapping("/route/{routeId}/date/{dateStr}")
+    // public List<BusSchedule> getBusesByRoute(@PathVariable Long routeId, @PathVariable String dateStr) {
+    //     // LocalDate date = LocalDate.parse(dateStr);
+
+    //     return busScheduleService.getBusesByRoute(routeId,dateStr);
+    // }
 
     // @GetMapping("/search")
     // public List<BusSchedule> searchBuses(

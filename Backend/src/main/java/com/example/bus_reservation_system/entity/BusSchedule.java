@@ -6,6 +6,7 @@ import java.sql.Time;
 import java.util.Set;
 
 import java.time.LocalDate;
+import java.time.DayOfWeek;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -19,7 +20,7 @@ public class BusSchedule {
 
    @ManyToOne
     @JoinColumn(name = "bus_id", nullable = false)
-    @JsonManagedReference // This will be serialized
+    // @JsonManagedReference // This will be serialized
     private Bus bus;
 
     @ManyToOne
@@ -35,8 +36,9 @@ public class BusSchedule {
     // @Column(nullable = false)
     // private Set<DayOfWeek> availableDays;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private String availableDays;
+    private DayOfWeek availableDays;
 
     
     @Column(nullable = false)
@@ -51,7 +53,7 @@ public class BusSchedule {
     @Column(nullable = false)
     private Double pricePerSeat;
 
-    @Column(nullable = false)
-    private LocalDate date;
+    // @Column(nullable = false)
+    // private LocalDate date;
 
 }

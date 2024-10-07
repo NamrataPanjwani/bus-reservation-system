@@ -1,6 +1,6 @@
-package com.example.bus_reservation_system.entity;
+// package com.example.bus_reservation_system.entity;
 
-public enum DayOfWeek {
-    MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
-}
+// public enum DayOfWeek {
+//     MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+// }
 

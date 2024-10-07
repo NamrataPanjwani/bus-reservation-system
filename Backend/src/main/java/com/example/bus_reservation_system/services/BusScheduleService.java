@@ -5,8 +5,11 @@ import com.example.bus_reservation_system.repositories.BusScheduleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +27,21 @@ public class BusScheduleService {
     // public List<BusSchedule> findAvailableBuses(String source, String destination, LocalDate date) {
     //     // Fetch schedules based on the source, destination, and date
     //     return busScheduleDao.findBySourceDestinationAndDate(source, destination, date);
+    // }
+
+
+
+    public List<BusSchedule> getBusesByRoute(Long routeId, String dateStr) {
+        LocalDate date = LocalDate.parse(dateStr);
+        DayOfWeek dayOfWeek = date.plusDays(1).getDayOfWeek();
+
+        System.out.println("route ID: " + routeId + " date: " + date + " str: " + dateStr+ "day of week: " + dayOfWeek);
+        return busScheduleDao.findByRouteIdAndAvailableDays(routeId, dayOfWeek);
+    }
+    
+    // public List<BusSchedule> getBusesByRoute(Long routeId, String dateStr) {
+    //     LocalDate date = LocalDate.parse(dateStr);
+    //     return busScheduleDao.findByRouteIdAndAvailableDays(routeId, date.getDayOfWeek());
     // }
 
     public List<BusSchedule> findAll() {
