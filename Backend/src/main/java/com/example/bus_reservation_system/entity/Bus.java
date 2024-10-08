@@ -1,13 +1,15 @@
 package com.example.bus_reservation_system.entity;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Data
@@ -30,5 +32,8 @@ public class Bus {
     @Column(name = "bus_name")
     private String busName;
 
+    @OneToMany(mappedBy = "bus")
+    @JsonBackReference
+    private List<BusSchedule> busSchedules;
 
 }

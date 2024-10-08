@@ -3,11 +3,14 @@ package com.example.bus_reservation_system.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.sql.Time;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import java.time.LocalDate;
 import java.time.DayOfWeek;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -20,11 +23,12 @@ public class BusSchedule {
 
    @ManyToOne
     @JoinColumn(name = "bus_id", nullable = false)
-    // @JsonManagedReference // This will be serialized
+    @JsonBackReference(value = "BusSchedule-Bus") 
     private Bus bus;
 
     @ManyToOne
     @JoinColumn(nullable = false,name = "route_id")
+    @JsonBackReference(value = "BusSchedule-Route") 
     private Route route;
 
     // @ElementCollection
@@ -36,9 +40,10 @@ public class BusSchedule {
     // @Column(nullable = false)
     // private Set<DayOfWeek> availableDays;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private DayOfWeek availableDays;
+    // @ElementCollection(targetClass = DayOfWeek.class)
+    // @Enumerated(EnumType.STRING)
+    // @Column(nullable = false)
+    // private List<DayOfWeek> availableDays= new ArrayList<DayOfWeek>();
 
     
     @Column(nullable = false)

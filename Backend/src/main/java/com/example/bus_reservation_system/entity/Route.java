@@ -4,8 +4,11 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.sql.Time;
 import java.time.LocalDate;
-
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Data
@@ -22,6 +25,8 @@ public class Route {
     @Column(nullable = false)
     private String destination;
 
-   
+    // @OneToMany(mappedBy = "route")
+    // @JsonBackReference
+    // private List<BusSchedule> busSchedules;
 
 }

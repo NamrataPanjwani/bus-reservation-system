@@ -1,7 +1,10 @@
 package com.example.bus_reservation_system.services;
 
 import com.example.bus_reservation_system.entity.BusSchedule;
+import com.example.bus_reservation_system.entity.BusScheduleDays;
 import com.example.bus_reservation_system.repositories.BusScheduleDao;
+import com.example.bus_reservation_system.repositories.BusScheduleDay;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,9 +22,12 @@ public class BusScheduleService {
 
     private final BusScheduleDao busScheduleDao;
 
+    private final BusScheduleDay busScheduleDay;
+
     @Autowired
-    public BusScheduleService(BusScheduleDao busScheduleRepo) {
+    public BusScheduleService(BusScheduleDao busScheduleRepo, BusScheduleDay busScheduleDay) {
         this.busScheduleDao = busScheduleRepo;
+        this.busScheduleDay = busScheduleDay;
     }
 
     // public List<BusSchedule> findAvailableBuses(String source, String destination, LocalDate date) {
@@ -31,12 +37,15 @@ public class BusScheduleService {
 
 
 
-    public List<BusSchedule> getBusesByRoute(Long routeId, String dateStr) {
+    public List<BusScheduleDays> getBusesByRoute(Long routeId, String dateStr) {
         LocalDate date = LocalDate.parse(dateStr);
         DayOfWeek dayOfWeek = date.plusDays(1).getDayOfWeek();
 
+        String dayOfWeekStr = dayOfWeek.name();
+
+
         System.out.println("route ID: " + routeId + " date: " + date + " str: " + dateStr+ "day of week: " + dayOfWeek);
-        return busScheduleDao.findByRouteIdAndAvailableDays(routeId, dayOfWeek);
+        return busScheduleDay.findByRouteIdAndDayOfWeek(routeId, dayOfWeekStr);
     }
     
     // public List<BusSchedule> getBusesByRoute(Long routeId, String dateStr) {
@@ -79,7 +88,7 @@ public class BusScheduleService {
         busSchedule.setRoute(busSchedule.getRoute());
         busSchedule.setDepartureTime(busSchedule.getDepartureTime());
         busSchedule.setArrivalTime(busSchedule.getArrivalTime());
-        busSchedule.setAvailableDays(busSchedule.getAvailableDays());
+        // busSchedule.setAvailableDays(busSchedule.getAvailableDays());
 
         BusSchedule updateBusSchedule = busScheduleDao.save(busSchedule);
         return ResponseEntity.ok(updateBusSchedule);

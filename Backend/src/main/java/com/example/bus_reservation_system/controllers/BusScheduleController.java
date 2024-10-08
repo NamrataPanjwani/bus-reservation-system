@@ -1,6 +1,7 @@
 package com.example.bus_reservation_system.controllers;
 
 import com.example.bus_reservation_system.entity.BusSchedule;
+import com.example.bus_reservation_system.entity.BusScheduleDays;
 import com.example.bus_reservation_system.repositories.BusScheduleDao;
 import com.example.bus_reservation_system.services.BusScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class BusScheduleController {
     }
 
     @GetMapping("/route/{routeId}/date/{dateStr}")
-    public List<BusSchedule> getBusesByRoute(@PathVariable Long routeId, @PathVariable String dateStr) {
+    public List<BusScheduleDays> getBusesByRoute(@PathVariable Long routeId, @PathVariable String dateStr) {
         return busScheduleService.getBusesByRoute(routeId, dateStr);
     }
 

@@ -11,8 +11,10 @@ import java.time.LocalDate;
 @Repository
 public interface BusScheduleDao extends JpaRepository<BusSchedule, Long> {
      // List<BusSchedule> findByRouteId(Long routeId);
+
+
      
-     List<BusSchedule> findByRouteIdAndAvailableDays(Long routeId, DayOfWeek availableDay);
+     // List<BusSchedule> findByRouteIdAndAvailableDays(Long routeId, DayOfWeek availableDay);
 
 
      // List<BusSchedule> findBySourceDestinationAndDate(String source, String destination, LocalDate date);
