@@ -17,6 +17,8 @@ export class SeatServiceService {
 
  
   getBusesForRoute(id:number, date: Date): Observable<any[]> {
+    console.log(`Getting routes================${id}`);
+    
     return this.http.get<any[]>(`http://localhost:8080/api/busSchedule/route/${id}/date/${date}`);
   }
 

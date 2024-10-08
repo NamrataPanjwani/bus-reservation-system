@@ -52,13 +52,13 @@
                 <!-- Check if buses are available -->
                 <div *ngIf="buses && buses.length > 0; else noBusesTemplate">
                     <div *ngFor="let bus of buses" class="bus-card">
-                        <div class="bus-name">{{ bus.bus.busName }}</div>
+                        <div class="bus-name">{{ bus.busSchedule.busName }}</div>
                         <div class="bus-details">
-                            <div class="detail time2"><strong>Arrival Time:</strong> {{ bus.arrivalTime }}</div>
-                            <div class="detail time1"><strong>Departure Time:</strong> {{ bus.departureTime }}</div>
-                            <div class="detail time1"><strong>Type:</strong> {{ bus.bus.busType }} Bus</div>
-                            <div class="detail time1">{{ bus.availableSeats }} Seats Available</div>
-                            <div class="detail d2"><strong>Price:</strong> <div class="price">{{ bus.pricePerSeat }} INR</div></div>
+                            <div class="detail time2"><strong>Arrival Time:</strong> {{ bus.busSchedule.arrivalTime }}</div>
+                            <div class="detail time1"><strong>Departure Time:</strong> {{ bus.busSchedule.departureTime }}</div>
+                            <div class="detail time1"><strong>Type:</strong> {{ bus.busSchedule.busType }} Bus</div>
+                            <div class="detail time1">{{ bus.busSchedule.availableSeats }} Seats Available</div>
+                            <div class="detail d2"><strong>Price:</strong> <div class="price">{{ bus.busSchedule.pricePerSeat }} INR</div></div>
                         </div>
                         <button (click)="selectBus(bus)">Book Now</button>
                     </div>
