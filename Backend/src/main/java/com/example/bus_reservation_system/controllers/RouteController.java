@@ -57,25 +57,3 @@ public class RouteController {
 
 
 }
-
-//
-//@PutMapping("/update/{id}")
-//public ResponseEntity<Route> updateRoute(@PathVariable long id, @RequestBody Route route){
-//    route.setSource(route.getSource());
-//    route.setDestination(route.getDestination());
-//    route.setDistance(route.getDistance());
-//    route.setEstimatedTime(route.getEstimatedTime());
-//
-//    Route updatedRoute = routeDao.save(route);
-//    return ResponseEntity.ok(updatedRoute);
-//}
-
-
-
-// {
-//         "id": 1002,
-//         "source": "Jaipur",
-//         "destination": "Ahmedabad",
-//         "distance": 3000.0,
-//         "estimatedTime": "10:00:00"
-//         },

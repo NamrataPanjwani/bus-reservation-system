@@ -19,7 +19,7 @@ public class BusController {
     @Autowired
     BusService busService;
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/findById/{id}")
     public  Optional<Bus> getBus(@PathVariable("id") long id){
         return busService.findBus(id);
     }
@@ -35,15 +35,11 @@ public class BusController {
         return new ResponseEntity<>(newBus, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete/{id}")
-    public void deleteBus(@PathVariable("id") long id){
-        busService.deleteBus(id);
-    }
-
     @PutMapping("/update/{id}")
     public ResponseEntity<Bus> updateBusSchedule(@PathVariable long id, @RequestBody Bus bus){
         return busService.updateBus(id,bus);
     }
+
     @GetMapping("/search/{source}/{destination}/{date}")
     public List<Bus> getBuses(
             @PathVariable("source") String source,
@@ -52,5 +48,9 @@ public class BusController {
     
        return busService.getBuses(source, destination, date);
     }
-    
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteBus(@PathVariable("id") long id){
+        busService.deleteBus(id);
+    }
 }

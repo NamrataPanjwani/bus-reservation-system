@@ -5,9 +5,6 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.example.bus_reservation_system.entity.Bus;
 import com.example.bus_reservation_system.repositories.BusDao;
 
@@ -17,9 +14,8 @@ public class BusService {
     @Autowired
     BusDao busDao;
 
-    public Bus createBus(@RequestBody Bus bus){
+    public Bus createBus(Bus bus){
         return busDao.save(bus);
-
     }
 
     public Optional<Bus> findBus(long id){
@@ -34,16 +30,27 @@ public class BusService {
         busDao.deleteById(id);
     }
 
-    public ResponseEntity<Bus> updateBus(@PathVariable long id, @RequestBody Bus bus){
-        bus.setBusNumber(bus.getBusNumber());
-        bus.setBusType(bus.getBusType());
-    
-        bus.setOperator(bus.getOperator());
-     
+    public ResponseEntity<Bus> updateBus(long id, Bus bus) {
+        Optional<Bus> existingBusOpt = busDao.findById(id);
 
-        Bus updateBus = busDao.save(bus);
-        return ResponseEntity.ok(updateBus);
+        if (existingBusOpt.isPresent()) {
+            Bus existingBus = existingBusOpt.get();
+
+            existingBus.setBusNumber(bus.getBusNumber());
+            existingBus.setBusType(bus.getBusType());
+            existingBus.setArrTime(bus.getArrTime());
+            existingBus.setDeptTime(bus.getDeptTime());
+            existingBus.setRoute_id(bus.getRoute_id());
+            existingBus.setOperator(bus.getOperator());
+            existingBus.setPrice(bus.getPrice());
+
+            Bus updatedBus = busDao.save(existingBus);
+            return ResponseEntity.ok(updatedBus);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
     public List<Bus> getBuses(String source, String destination, String date) {
         return busDao.findBusesByRouteAndDay(source, destination, date);
     }

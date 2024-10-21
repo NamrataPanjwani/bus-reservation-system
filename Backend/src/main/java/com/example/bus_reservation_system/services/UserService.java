@@ -29,21 +29,27 @@ public class UserService {
         return userDao.findAll();
     }
 
+    public ResponseEntity<User> updateUser(@PathVariable  long id, User user) {
+        Optional<User> existingUserOpt = userDao.findById(id);
+
+        if (existingUserOpt.isPresent()) {
+            User existingUser = existingUserOpt.get();
+
+            existingUser.setName(user.getName());
+            existingUser.setEmail(user.getEmail());
+            existingUser.setPassword(user.getPassword());
+            existingUser.setPhone(user.getPhone());
+            existingUser.setRole(user.getRole());
+
+            User updatedUser = userDao.save(existingUser);
+            return ResponseEntity.ok(updatedUser);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     public void delete(long id){
         userDao.deleteById(id);
     }
-
-    public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User user){
-        user.setName(user.getName());
-        user.setEmail(user.getEmail());
-        user.setPassword(user.getPassword());
-        user.setPhone(user.getPhone());
-        user.setRole(user.getRole());
-
-        User updateUser = userDao.save(user);
-        return ResponseEntity.ok(updateUser);
-    }
-
-
 }
 
