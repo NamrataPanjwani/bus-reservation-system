@@ -41,6 +41,11 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     this.loadRoutes();
     this.initializeForm();
+    
+  }
+
+  report(){
+    this.router.navigateByUrl('revenue-report')
   }
 
 

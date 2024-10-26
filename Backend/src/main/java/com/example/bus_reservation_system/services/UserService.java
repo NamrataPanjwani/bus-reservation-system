@@ -21,7 +21,7 @@ public class UserService {
         return userDao.save(user);
     }
 
-    public Optional<User> getUser(Long id){
+    public Optional<User> getUser(long id){
         return userDao.findById(id);
     }
     public User findByName(String name){

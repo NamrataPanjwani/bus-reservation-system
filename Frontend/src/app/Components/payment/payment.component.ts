@@ -102,7 +102,8 @@ export class PaymentComponent implements OnInit {
         reservation.reservationDate = this.date;
         reservation.seatNumber = element;
         reservation.bookingId = this.bookingId;
-
+        console.log(reservation);
+        
         reservations.push(reservation); // Store each reservation
       });
 

@@ -3,9 +3,6 @@ package com.example.bus_reservation_system.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
-
 @Entity
 @Data
 @Table(name = "Reservation")
@@ -18,8 +15,9 @@ public class Reservation {
     @Column(name="user_id",nullable=false)
     private long user_id;
 
-    @Column(name="bus_id",nullable=false)
-    private long bus_id;
+    @ManyToOne
+    @JoinColumn(name = "bus_id",nullable = false)
+    private Bus bus;
 
     @Column(nullable = false)
     private String reservationDate;
@@ -27,12 +25,6 @@ public class Reservation {
     @Column(nullable = false)
     private int seatNumber;
 
-
-
     @Column(nullable = false)
     private long bookingId;
-
-
-
-
 }

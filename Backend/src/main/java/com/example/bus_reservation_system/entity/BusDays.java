@@ -14,7 +14,7 @@ import lombok.Data;
 public class BusDays {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(nullable = false)
     private long busId;

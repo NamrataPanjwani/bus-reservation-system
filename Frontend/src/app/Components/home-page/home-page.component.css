@@ -32,3 +32,27 @@ button:hover {
   background-color: #0056b3;
   color: white;
 }
+
+
+.revenue-report-button {
+  margin-top: 5%;
+  margin-left: 80%;
+  background-color: #007BFF; 
+  color: white; 
+  border: none; 
+  border-radius: 5px; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  transition: background-color 0.3s, transform 0.2s; 
+}
+
+.revenue-report-button:hover {
+  background-color: #0056b3; 
+  transform: translateY(-2px); 
+}
+
+.revenue-report-button:active {
+  background-color: #004494; 
+  transform: translateY(0); 
+}

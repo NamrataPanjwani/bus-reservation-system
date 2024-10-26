@@ -1,3 +1,5 @@
+import { Reservation } from "./reservation";
+
 export class Bus {
     id?: number;
     busNumber: string;

@@ -3,6 +3,7 @@ package com.example.bus_reservation_system.entity;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -13,10 +14,11 @@ import lombok.Data;
 public class Bus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "bus_number", unique = true, nullable = false)
     private String busNumber;
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "bus_type", nullable = false)
@@ -35,6 +37,6 @@ public class Bus {
     private String operator;
 
     @Column(nullable=false)
-    private int price;
+    private double price;
 
 }

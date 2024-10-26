@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="revenue-report-container">
+        <h2>Revenue Report for Rajvi Travels</h2>
+      
+        <table>
+          <thead>
+            <tr>
+              <th>Bus ID</th>
+              <th>Bus Number</th>
+              <th>Total Revenue (₹)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of revenueData">
+              <td>{{ report.busId }}</td>
+        
+              <td>{{ report.busNumber }}</td>
+              <td>{{ report.totalRevenue }}</td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <div class="total-revenue">
+          <strong>Total Revenue: ₹{{totalRevenue}}</strong> 
+        </div>
+    </div>
+    
+    
+</body>
+</html>
